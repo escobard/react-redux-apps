@@ -18,7 +18,7 @@ describe('Tests app component', () => {
 		('comment-box');
 		*/
 
-		// utilizes stephen griders method to render react components - this is REALLY useful for eact applications that require props
+		// utilizes stephen griders method to render react components - this is REALLY useful for react applications that require props
 		const component = renderComponent(App);
 
 		// uses expect to make an assertion about a specific component
