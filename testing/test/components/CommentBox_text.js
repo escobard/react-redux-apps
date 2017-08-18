@@ -3,11 +3,16 @@ import CommentBox from '../../src/components/CommentBox';
 
 // can find the chai-jquery assertions here: https://github.com/chaijs/chai-jquery
 describe('Tests CommentBox component', () => {
-	// renders the component with props, utilizing a `redux` store
-	let component = renderComponent(CommentBox);
+	
+	let component;
+
+	// this function gets called before each `it` is utilized
+	beforeEach(() =>{
+		// renders the component with props, utilizing a `redux` store
+		component = renderComponent(CommentBox);
+	})
 
 	it('has a text area', () => {
-		// uses expect to make an assertion about a specific component
 		expect(component.find('textarea')).to.exist;
 	});
 
