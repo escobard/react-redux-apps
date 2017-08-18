@@ -28,11 +28,14 @@ describe('Tests CommentBox component', () => {
 	describe('Entering some text', () =>{
 
 		beforeEach(() =>{
-			
+			component.find('textarea')
+			// this method accepts the type of event, and the value expected after the event
+			// very useful for testing in component event handlers
+			.simulate('change', 'new comment');
 		})
 
 		it('shows text that is entered', () => {
-
+			expect(component.find('textarea')).to.have.value('new comment');
 		})
 
 		it('when submitted, clears the input', () => {
