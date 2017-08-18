@@ -5,7 +5,17 @@ import App from '../../src/components/app';
 // The string in here is rendered within the console
 describe('Tests app component', () => {
 
-	// describes one attribute of this component that is being tested
+	let component;
+
+	beforeEach(() => {
+		component = renderComponent(App);
+	})
+	
+	it('shows a comment box', () =>{
+		expect(component.find('.comment-box')).to.exist;
+	})
+	
+	/* describes one attribute of this component that is being tested
 	it('shows the correct text', () => {
 		/*
 		// this method expects a specific attribute of the tested component to be true
@@ -16,15 +26,13 @@ describe('Tests app component', () => {
 		.to.have.class
 		// this is the value that we expect
 		('comment-box');
-		*/
-
 		// utilizes stephen griders method to render react components - this is REALLY useful for react applications that require props
 		const component = renderComponent(App);
 
 		// uses expect to make an assertion about a specific component
 		expect(component).to.contain('React simple starter');
 	
-	});
+	}); */
 
 
 
