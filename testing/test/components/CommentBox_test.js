@@ -39,7 +39,10 @@ describe('Tests CommentBox component', () => {
 		})
 
 		it('when submitted, clears the input', () => {
-			
+			component
+			// this allows the component to simmulate an additional event to the component within this it statement only
+			.simulate('submit');
+			expect(component.find('textarea')).to.have.value('');
 		})
 
 	})

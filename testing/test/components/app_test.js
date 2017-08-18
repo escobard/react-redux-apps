@@ -14,6 +14,10 @@ describe('Tests app component', () => {
 	it('shows a comment box', () =>{
 		expect(component.find('.comment-box')).to.exist;
 	})
+
+	it('shows a comment list', () =>{
+		expect(component.find('.comment-list')).to.exist;
+	})
 	
 	/* describes one attribute of this component that is being tested
 	it('shows the correct text', () => {
