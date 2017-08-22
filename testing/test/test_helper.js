@@ -4,7 +4,11 @@ import jsdom from 'jsdom';
 // sets up jQuery in a new variable, which is then defined as $ later on
 import jQuery from 'jquery';
 import React from 'react';
+
+// utilizes dom elements from react-dom
 import ReactDOM from 'react-dom';
+
+// utilizes test utilities for react
 import TestUtils from 'react-addons-test-utils';
 
 // Mocha is responsible for running the tests, gives us the reports back, handles errors, loads our tests
@@ -33,20 +37,34 @@ const $ = jQuery(global.window);
 
 chaiJquery(chai, chai.util, $);
 
+// build `renderComponent` helper that should render a given react class
 function renderComponent(ComponentClass, props = {}, state = {}) {
-  const componentInstance =  TestUtils.renderIntoDocument(
+  
+  // creates a component with a store
+  const componentInstance =  
+
+  // this line essentially renders the application into the HTML document
+  // this does the exact same as ReactDOM.render, except within our global.window instances within the cmd
+  TestUtils.renderIntoDocument(
+    // this is necessary with react-redux, since we need to have a store for our data
     <Provider store={createStore(reducers, state)}>
       <ComponentClass {...props} />
     </Provider>
   );
 
+  // this produces the HTML within our window which is utilized by the cmd, effectively rendering our testing components
+  // the reason why we need to add jQuery here is to allow us to utilize the assertion elements of chaiJquery
   return $(ReactDOM.findDOMNode(componentInstance));
 }
 
+// this function creates a function with an argument that utilises an event handler and a value to simulate component events
 $.fn.simulate = function(eventName, value) {
   if (value) {
+    // the this handler here accesses the component added to the simulate function
     this.val(value);
   }
+
+  // this is what simulates the change event handler with TestUtils
   TestUtils.Simulate[eventName](this[0]);
 };
 
