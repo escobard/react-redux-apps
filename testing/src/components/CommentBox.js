@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class CommentBox extends Component {
+// this is a fantastic way to pass multiple actions into each container without calling all of them at once
+// should probably add this as part of my review notes
+import * as actions from '../actions'
+
+class CommentBox extends Component {
 	constructor(props){
 		super(props);
 		this.state = { 
@@ -14,6 +19,7 @@ export default class CommentBox extends Component {
 
 	handleSubmit(event){
 		event.preventDefault();
+		this.props.saveComment(this.state.comment);
 		this.setState({ comment: '' });
 	}
 
@@ -35,3 +41,5 @@ export default class CommentBox extends Component {
 		);
 	}
 }
+
+export default connect(null, actions)(CommentBox);
