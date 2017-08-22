@@ -1,3 +1,11 @@
+// set up the testing environment to run like a browser in the command line
+
+// build render component helper that should render a given react class
+
+// build helper for simulating events
+
+
+// set up chai-jquery
 import _$ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
