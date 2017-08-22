@@ -3,7 +3,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import jsdom from 'jsdom';
+// Mocha is responsible for running the tests, gives us the reports back, handles errors, loads our tests
+// cleans them one by one, and cleans up after each one
+
+// Chai is responsible for writing the tests, which contains a library of helpers to make assertions about specific properties
+// of the subjects we are testing. Documentation here: chaijs.com/api/bbd
+
 import chai, { expect } from 'chai';
+
+// this library enhances the assertions of the chai library by utilizing jQuery
 import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
