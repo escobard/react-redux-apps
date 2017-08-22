@@ -1,16 +1,12 @@
-// set up the testing environment to run like a browser in the command line
+// this sets up jQuery to work with the terminal to simulate a browser: github.com/tmpvar/jsdom
+import jsdom from 'jsdom';
 
-// build render component helper that should render a given react class
-
-// build helper for simulating events
-
-
-// set up chai-jquery
-import _$ from 'jquery';
+// sets up jQuery in a new variable, which is then defined as $ later on
+import jQuery from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import jsdom from 'jsdom';
+
 // Mocha is responsible for running the tests, gives us the reports back, handles errors, loads our tests
 // cleans them one by one, and cleans up after each one
 
@@ -24,11 +20,16 @@ import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
-// TEST
+
+// set up the testing environment to run like a browser in the command line
+// global is the same as window within a node.js environment
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
-const $ = _$(window);
+
+// this sets up the $ to utilize the window DOM variable as $ for jQuery
+// so its ONLY responsible for the global.window that is used by the cmd
+const $ = jQuery(global.window);
 
 chaiJquery(chai, chai.util, $);
 
