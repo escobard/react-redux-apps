@@ -13,6 +13,20 @@ export default function(ComposedComponent){
 			router: React.PropTypes.object
 		}
 
+		checkAuth(){
+			if (!this.props.authentication) {
+				this.context.router.push('/');
+			}
+		}
+
+		componentDidMount(){
+			this.checkAuth();
+		}
+
+		componentDidUpdate(){
+			this.checkAuth();
+		}
+		
 		render(){
 			return <ComposedComponent {...this.props} />
 		}
