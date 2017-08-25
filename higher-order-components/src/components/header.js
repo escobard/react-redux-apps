@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class Header extends Component {
 	constructor(props) {
@@ -9,8 +11,17 @@ class Header extends Component {
 		}
 	}
 	renderAuthButton(){
-		return <button>Sign In</button>
+		return(
+			<div>
+				{this.props.authentication
+				? <button onClick={() => this.props.authenticate(false)}>Sign Out</button> 
+				: <button onClick={() => this.props.authenticate(true)}>Sign In</button>}
+			</div>
+
+		);
+		
 	}
+
 	renderNavItems(links){
 		return links.map(link =>{
 			switch(link){
@@ -35,4 +46,8 @@ class Header extends Component {
 	}
 };
 
-export default Header;
+function mapStateToProps ({authentication}) {
+	return {authentication};
+}
+
+export default connect(mapStateToProps, actions)(Header);

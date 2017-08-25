@@ -1,1 +1,3 @@
-export default const CHANGE_AUTH = 'CHANGE_AUTH';
+const CHANGE_AUTH = 'CHANGE_AUTH';
+
+export default CHANGE_AUTH;
