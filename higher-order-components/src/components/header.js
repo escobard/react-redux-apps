@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class Header extends Component {
+	
 	constructor(props) {
 		super(props);
-		this.state ={
-			links : ['Home', 'Resources', 'Authentication']
+		this.state = {
+			links : [{name:'Home', path: '/'}, {name:'Resources', path: '/resources'}, {name:'Authentication'}]
 		}
 	}
-	renderAuthButton(){
+
+	renderAuthButton(buttons){
 		return(
 			<div>
 				{this.props.authentication
@@ -23,15 +25,11 @@ class Header extends Component {
 	}
 
 	renderNavItems(links){
-		return links.map(link =>{
-			switch(link){
-				case('Authentication'):
-					return <li key={link} className="nav-item">{this.renderAuthButton()}</li>;
-				case('Resources'):
-					return <li key={link} className="nav-item"><Link to='/resources'>{link}</Link></li>;
-				default:
-					return <li key={link} className="nav-item"><Link to='/'>{link}</Link></li>;
-			}
+		return links.map((link, index) =>{
+			let {name, path} = link;
+			if(!path) {return <li key={index} className="nav-item">{this.renderAuthButton(this.state.buttons)}</li>};
+			return <li key={index} className="nav-item"><Link to={path}>{name}</Link></li>
+			
 		})
 	}
 
