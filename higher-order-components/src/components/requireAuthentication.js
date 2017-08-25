@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 export default function(ComposedComponent){
 
 	class Authentication extends Component{
 		render(){
-			return <ComposedComponent {..this.props} />
+			return <ComposedComponent {...this.props} />
 		}
 	}
 
-	return Authentication;
+	function mapStateToProps ({authentication}) {
+		return {authentication};
+	}
+
+	return connect(mapStateToProps)(Authentication);
 }
 
 /* 
