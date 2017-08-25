@@ -4,6 +4,15 @@ import { connect } from 'react-redux';
 export default function(ComposedComponent){
 
 	class Authentication extends Component{
+
+		// this allows us to get access to our context
+		// the static keyword is defining a property of the Authentication class
+		static contextTypes = {
+
+			// this says that we need to get access to a router property
+			router: React.PropTypes.object
+		}
+
 		render(){
 			return <ComposedComponent {...this.props} />
 		}
