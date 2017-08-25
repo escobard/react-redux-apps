@@ -35,6 +35,7 @@ global.navigator = global.window.navigator;
 // so its ONLY responsible for the global.window that is used by the cmd
 const $ = jQuery(global.window);
 
+// passes the jQuery and chai utilities into chaiJquery.
 chaiJquery(chai, chai.util, $);
 
 // build `renderComponent` helper that should render a given react class
