@@ -13,7 +13,7 @@ class Users extends Component {
 		return users.map((user, index) =>{
 			let {name} = user;
 			return (
-				<div key={index} className="card card-block">
+				<div key={index} className="card card-block col-md-3 col-sm-12">
 					<h4 className="card-title">{name}</h4>
 					<p className="card-text">Cheese Factory</p>
 					<a className="btn btn-primary">Email</a>
@@ -24,8 +24,8 @@ class Users extends Component {
 		})
 	}
 	render(){
-		return(
 
+		return(
 			<div className="users">
 				{this.renderUser(this.props.users)}
 			</div>
