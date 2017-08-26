@@ -11,12 +11,13 @@ class Users extends Component {
 
 	renderUser(users){
 		return users.map((user, index) =>{
-			let {name} = user;
+			let {name, website} = user;
+			let company = user.company.name;
 			return (
 				<div key={index} className="card card-block col-md-3 col-sm-12">
 					<h4 className="card-title">{name}</h4>
-					<p className="card-text">Cheese Factory</p>
-					<a className="btn btn-primary">Email</a>
+					<p className="card-text">{company}</p>
+					<a className="btn btn-primary" href={website}>{website}</a>
 				</div>
 
 			);
