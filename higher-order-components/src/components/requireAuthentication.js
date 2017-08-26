@@ -15,6 +15,8 @@ export default function(ComposedComponent){
 
 		checkAuth(){
 			if (!this.props.authentication) {
+
+				// this seems a little outdated, as you can import in and use browserHistory instead to achieve the same result
 				this.context.router.push('/');
 			}
 		}
@@ -26,7 +28,7 @@ export default function(ComposedComponent){
 		componentDidUpdate(){
 			this.checkAuth();
 		}
-		
+
 		render(){
 			return <ComposedComponent {...this.props} />
 		}
