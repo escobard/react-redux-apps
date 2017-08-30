@@ -22,7 +22,7 @@ export default function({dispatch}){
 
 // middlewares are also useful to change endpoints form API to better utilize received data
 
-// this is generally the main structure of a middleware function
+// this is generally the main structure of a middleware 
 // a middleware is a function that does something with actions BEFORE they hit the reducers
 export default function({dispatch}){
 	return next => 
