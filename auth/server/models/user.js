@@ -2,28 +2,34 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Defines our model
-// we are defining our data here to enforce uniqueness
-// full list of behavior here: http://mongoosejs.com/docs/guide.html
-const userSchema = new Schema({
-	email: { 
+/*============================================
+ Defines our model 
+ ===========================================*/
 
-		// defines the data type
-		type: String, 
+	// we are defining our data here to enforce uniqueness
+	// full list of behavior here: http://mongoosejs.com/docs/guide.html
+	const userSchema = new Schema({
+		email: { 
 
-		// defines uniqueness
-		unique: true , 
+			// defines the data type
+			type: String, 
 
-		// turns to lowercase before checking data
-		lowercase: true
-	},
-	password: String
-});
+			// defines uniqueness
+			unique: true , 
 
-// Create the model class
+			// turns to lowercase before checking data
+			lowercase: true
+		},
+		password: String
+	});
 
-// this creates the schema into mongoose, and creates a collection named user
-const ModelClass = mongoose.model('user', userSchema);
+/*============================================
+Create the model class
+===========================================*/
+ 
+	// 
+	// this creates the schema into mongoose, and creates a collection named user
+	const ModelClass = mongoose.model('user', userSchema);
 
-// export the model
-module.exports = ModelClass;
+	// export the model
+	module.exports = ModelClass;
