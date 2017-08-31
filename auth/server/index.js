@@ -12,6 +12,9 @@ const morgan = require('morgan');
 // creates our instance of express
 const app = express();
 
+// calls our server router 
+const router = require('./router');
+
 /* =============================================================
  App setup - all about getting the express server working the way we want to
 =================================================================*/
@@ -26,6 +29,8 @@ app.use(morgan('combined'));
 // bodyParser passes any incoming requests into JSON, the '*/*' pseudo is accepting all requests no matter what the request is
 app.use(bodyParser.json({type: '*/*'}));	
 
+// passed our app through the server router
+router(app);
 
 /*=======================================================================
  Server setup - this is setting up our server to talk to the outside world
