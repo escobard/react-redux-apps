@@ -8,6 +8,13 @@ const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+//DB Setup
+
+// connects to our mongodb locally
+// creates a database within mongodb with the name `auth`
+mongoose.connect('mongodb://localhost:auth/auth');
 
 // creates our instance of express
 const app = express();

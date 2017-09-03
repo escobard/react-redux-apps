@@ -1,3 +1,13 @@
+const Authentication = require('./controllers/authentication');
+
+module.exports = function(app){
+	app.post('/signup', Authentication.signup);
+};
+
+
+
+
+/*
 module.exports = function(app){
 	
 	// this handles get requests with express for our application 
@@ -12,3 +22,4 @@ module.exports = function(app){
 		res.send(['water', 'phone', 'paper']);
 	})
 };
+*/
