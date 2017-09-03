@@ -27,7 +27,6 @@ const Schema = mongoose.Schema;
 Create the model class
 ===========================================*/
  
-	// 
 	// this creates the schema into mongoose, and creates a collection named user
 	const ModelClass = mongoose.model('user', userSchema);
 
