@@ -2,6 +2,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// installs the bcrypt dependency for password encryptions
+const bcrypt = require('bcrypt-nodejs');
+
+
+// installs error handler util
+const errorHandler = require('../utils/utils');
 /*============================================
  Defines our model 
  ===========================================*/
@@ -23,6 +29,17 @@ const Schema = mongoose.Schema;
 		password: String
 	});
 
+	// on save, encrypts password
+	// the .pre() method does something with the scheme BEFORE a specific methos is invoked
+	userSchema.pre('save', function(next){
+		const user = this;
+
+		bcrypt.genSalt(10, function(err, salt){
+			errorHandler(err);
+
+
+		})
+	})
 /*============================================
 Create the model class
 ===========================================*/

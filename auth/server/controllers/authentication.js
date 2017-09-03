@@ -10,6 +10,13 @@ exports.signup = function(req, res, next){
 	const email = req.body.email;
 	const password = req.body.password;
 
+	// checks for empty email and password
+	// returns an empty response if either email or password is null
+	// here is an excellent place for server side validation
+	if (!email || !password) {
+		return res.status(422).send({error: 'You must provide your email and your password'});
+	}
+
 	//See if a user with the given email exists
 
 	// findOne is a method whos first argument is the search criteria we want to use
