@@ -37,6 +37,12 @@ const errorHandler = require('../utils/utils');
 		bcrypt.genSalt(10, function(err, salt){
 			errorHandler(err);
 
+			bcrypt.hash(user.password, salt, null, function(err, hash){
+				errorHandler(err);
+
+				user.password = hash;
+				next()
+			});
 
 		})
 	})
