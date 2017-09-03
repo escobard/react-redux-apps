@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 // installs error handler util
 const errorHandler = require('../utils/utils');
+
 /*============================================
  Defines our model 
  ===========================================*/
@@ -31,17 +32,25 @@ const errorHandler = require('../utils/utils');
 
 	// on save, encrypts password
 	// the .pre() method does something with the scheme BEFORE a specific methos is invoked
+	// in other words before saving a model run this function
 	userSchema.pre('save', function(next){
+
+		// this grabs userSchema, and sets it to the user const
 		const user = this;
 
+		// this generates a salt - then run callback
 		bcrypt.genSalt(10, function(err, salt){
 			errorHandler(err);
 
+			// hash (or encrypt) our password using this salt
 			bcrypt.hash(user.password, salt, null, function(err, hash){
 				errorHandler(err);
 
+				// if all goes well, overwrite the current user password, with encrypted password
 				user.password = hash;
-				next()
+
+				// passes the next middleware before creating the model, if none found then it saves the model
+				next();
 			});
 
 		})
