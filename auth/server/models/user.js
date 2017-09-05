@@ -56,10 +56,10 @@ const errorHandler = require('../utils/utils');
 	});
 
 	// compares passwords
+	// this creates the comparePasswords method to compare salted + hashed passwords
 	userSchema.methods.comparePassword = function(candidatePassword, callback){
-
 		
-		bcrypt.compare(candidatepassword, this.password, function(err, isMatch){
+		bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
 			if (err) {return callback(err);}
 
 			callback(null, isMatch);

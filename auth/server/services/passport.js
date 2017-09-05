@@ -9,7 +9,7 @@ const LocalStrategy = require('passport-local');
 // using usernameField here sets the 'email' db field to the username 
 const localLogin = new LocalStrategy({usernameField: 'email'}, function(email, password, done){
 
-	// verify this email and password, cal done with the user
+	// verify this email and password, call done with the user
 	// if it is the correct username and password
 	// otherwise call done with false 
 	User.findOne({email: email}, function(err, user){
