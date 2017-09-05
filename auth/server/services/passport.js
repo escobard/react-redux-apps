@@ -15,6 +15,9 @@ const localLogin = new LocalStrategy({usernameField: 'email'}, function(email, p
 	User.findOne({email: email}, function(err, user){
 		if (err) {return done(err)};
 		if (!user) {return done(null, false)};
+
+		// compare passwords - is password equal to user.password?
+		
 	});
 });
 
