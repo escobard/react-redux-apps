@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 // installs the bcrypt dependency for password encryptions
 const bcrypt = require('bcrypt-nodejs');
 
-
 // installs error handler util
 const errorHandler = require('../utils/utils');
 
@@ -55,6 +54,7 @@ const errorHandler = require('../utils/utils');
 
 		})
 	})
+
 /*============================================
 Create the model class
 ===========================================*/
