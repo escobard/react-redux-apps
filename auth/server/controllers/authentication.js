@@ -10,6 +10,8 @@ function tokenForUser(user){
 	// the .iat property is the issued at time timestamp
 	// for more on jwt go to : https://jwt.io/introduction/
 	const timestamp = new Date().getTime();
+
+	// encoded the token with the user.id and the timestamp so we know when the token was created
 	return jwt.encode({sub:user.id, iat: timestamp}, config.secret);
 }
 
