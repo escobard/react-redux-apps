@@ -1,6 +1,14 @@
 const Authentication = require('./controllers/authentication');
+const passportService = require('./services/passport');
+const passport = require('passport');
+
+// uses the `jwt` argument to utilize the token, and `session:false` to disable cookies
+const requireAuth = passport.authenticate('jwt', {session:false});
 
 module.exports = function(app){
+	app.get('/', requireAuth, function(req, res){
+		res.send({ hi: 'there'});
+	});
 	app.post('/signup', Authentication.signup);
 };
 

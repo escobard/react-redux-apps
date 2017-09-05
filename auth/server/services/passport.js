@@ -10,8 +10,8 @@ const jwtOptions = {
 
 	// tell our strategy that whenever our request comes in with a passport handler 
 	// look at the request header and look at 'authorization' to find the token
-	jwtFromRequest: ExtractJt.fromHeader('authorization'),
-	secreOrKey: config.secret
+	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+	secretOrKey: config.secret
 };
 
 // create JWT strategy
