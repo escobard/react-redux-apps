@@ -14,7 +14,7 @@ class SignIn extends Component{
 
 				<fieldset key={index} className="form-group">
 					<label htmlFor="email">{input}</label>
-					<input {...input}type="text" name={input} className="form-control"/>
+					<input {...input} type="text" name={input} className="form-control"/>
 				</fieldset>
 
 			);
