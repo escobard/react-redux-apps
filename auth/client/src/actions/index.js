@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 
-import { AUTH_USER } from './types';
+import { AUTH_USER, AUTH_ERROR } from './types';
 import { SIGN_IN, ROOT_URL } from './config';
 
 // this currently throws a 500 error when the user supplies the wrong email or password
@@ -44,7 +44,8 @@ export function signinUser(email, password){
 
 			// show an error to the user
 			// this was super useful diagnosing a typo in the response callback problem :)
-			console.log(err)
+			console.log(err);
+			dispatch(authError('Bad Login info'));
 		})
 		
 
@@ -54,4 +55,11 @@ export function signinUser(email, password){
 
 
 
+}
+
+export function authError(error){
+	return {
+		type: AUTH_ERROR,
+		payload: error
+	}
 }
