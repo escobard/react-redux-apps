@@ -60,8 +60,8 @@ class SignIn extends Component{
 	}
 }
 
-function mapStateToProps(state){
-	return {error: state.auth.error};
+function mapStateToProps({auth}){
+	return {error: auth.error};
 }
 
 export default connect(mapStateToProps, actions)(SignIn);

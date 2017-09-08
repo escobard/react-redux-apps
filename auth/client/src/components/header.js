@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {Link} from 'react-router';
 
-export default class Header extends Component{
+class Header extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			navItems: ['Sign In', 'Sign Out']
+			navItems: [ 'signin', 'signout']
 		}
 	}
-	renderNavItems(items){	
+	renderNavItems(items, auth){	
 		return items.map((item, index) => {
+			if (auth.authenticated && item == 'signin' || !auth.authenticated && item == 'signout') {
+				return;
+			}
+			else{
 			return(
 				<li key={index} className="nav-item">
-						{item}
+							<Link to={`/${item}`}>{item}</Link>						
 				</li>
 			)
+			}
 		})
 	}
 
@@ -21,9 +28,15 @@ export default class Header extends Component{
 		return(
 			<nav className="navbar navbar-light">
 				<ul className="nav navbar-nav">
-					{this.renderNavItems(this.state.navItems)}
+					{this.renderNavItems(this.state.navItems, this.props.auth)}
 				</ul>
 			</nav>
 		);
 	}
 }
+
+function mapStateToProps({auth}){
+	return {auth};
+}
+
+export default(connect(mapStateToProps)(Header));
