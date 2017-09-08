@@ -5,7 +5,8 @@ export default class Form extends Component{
 		super(props);
 		this.state = {
 			email :'',
-			password :''
+			password :'',
+			confirmpass: '',
 		}
 
     	this.handleCredential= this.handleCredential.bind(this);
@@ -27,13 +28,14 @@ export default class Form extends Component{
 	}
 	handleCredential(event){
 		let {id, value} = event.target;
-		
-		// the setState functions can be replaced with action creators to dispatch data into reducers for each form
-		// two reducers should be created - one for each form 
-		id == 'email' 
-		? this.setState({email:value}) 
-		: this.setState({password: value});
-
+		switch(id){
+			case 'email':
+				this.setState({email:value});
+			case 'password':
+				this.setState({password: value});
+			case 'confirmpass':
+				this.setState({confirmpass: value});
+		}
 	}
 	handleFormSubmit(event){
 		let {email, password} = this.state;
