@@ -1,31 +1,42 @@
 import React, {Component} from 'react';
-import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 class SignIn extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			formLabels: ['email', 'password']
+			formLabels: ['email', 'password'],
+			email :'',
+			password :''
 		}
+
+    	this.handleCredential= this.handleCredential.bind(this);
+    	this.renderInputs = this.renderInputs.bind(this);
 	}
 	renderInputs(inputs){
 		return inputs.map((input, index) =>{
 			return(
 
 				<fieldset key={index} className="form-group">
-					<label htmlFor="email">{input}</label>
-					<input {...input} type="text" name={input} className="form-control"/>
+					<label htmlFor={input}>{input}</label>
+					<input value={this.state.value} onChange={this.handleCredential} type="text" name={input} id={input} className="form-control"/>
 				</fieldset>
 
 			);
 		})
 	}
+	handleCredential(event){
+		let {id, value} = event.target;
+		id == 'email' 
+		? this.setState({email:value}) 
+		: this.setState({password: value});
+	}
 	handleFormSubmit({email, password}){
-		console.log(email, password);
+		console.log(this.state.email, this.state.password);
+		//this.props.signinUser({email, password});
 	}
 	render(){
-		// this handles reduxForm and grabs the props from our form higher order component
-		const {handleSubmit, fields: {email, password }} = this.props;
 
 		return(
 
@@ -39,7 +50,4 @@ class SignIn extends Component{
 	}
 }
 
-export default reduxForm({
-	form: 'signin',
-	fields: ['email', 'password']
-})(SignIn);
+export default connect(null, actions)(SignIn);
