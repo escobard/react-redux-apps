@@ -6,21 +6,19 @@ class Header extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			navItems: [ 'signin', 'signout']
+			navItems: [ 'signin', 'signout', 'signup']
 		}
 	}
 	renderNavItems(items, auth){	
 		return items.map((item, index) => {
-			if (auth.authenticated && item == 'signin' || !auth.authenticated && item == 'signout') {
+			if (auth.authenticated && item == 'signin' || auth.authenticated && item == 'signup' || !auth.authenticated && item == 'signout') {
 				return;
 			}
-			else{
 			return(
 				<li key={index} className="nav-item">
 							<Link to={`/${item}`}>{item}</Link>						
 				</li>
 			)
-			}
 		})
 	}
 

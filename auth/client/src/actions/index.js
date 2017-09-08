@@ -1,10 +1,11 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 
-import { AUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 import { SIGN_IN, ROOT_URL } from './config';
 
-// this currently throws a 500 error when the user supplies the wrong email or password
+// signs the user in with a request to the server API
+// handles server errors and saves a JWT token to localStorage
 export function signinUser(email, password){
 
 	// turned into in an object to match exact json request expected by the server
@@ -27,14 +28,14 @@ export function signinUser(email, password){
 			// this is the power of redux thunk, we can pass actions into our store from within a function
 			dispatch({type: AUTH_USER});
 			
+			// save the jwt token
+			// saves our token into local storage to check authentication
 			console.log(response.data)
 			localStorage.setItem('token', response.data.token);
 
 			// redirect to the route '/feature'
 			browserHistory.push('/feature');
 
-			// save the jwt token
-			// saves our token into local storage to check authentication
 
 		})
 		
@@ -44,14 +45,13 @@ export function signinUser(email, password){
 
 			dispatch(authError('Bad Login info'));
 		})
-		
-
-
-
 	}
+}
 
 
-
+export function signoutUser(){
+	localStorage.removeItem('token');
+	return { type: UNAUTH_USER};
 }
 
 export function authError(error){
@@ -60,3 +60,4 @@ export function authError(error){
 		payload: error
 	}
 }
+
