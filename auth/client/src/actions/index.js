@@ -40,11 +40,8 @@ export function signinUser(email, password){
 		
 		// if request is bad...
 		// chains the response after error
-		.catch((err) =>{
+		.catch(() =>{
 
-			// show an error to the user
-			// this was super useful diagnosing a typo in the response callback problem :)
-			console.log(err);
 			dispatch(authError('Bad Login info'));
 		})
 		

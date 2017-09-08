@@ -21,7 +21,8 @@ class SignIn extends Component{
 
 				<fieldset key={index} className="form-group">
 					<label htmlFor={input}>{input}</label>
-					<input value={this.state[input]} onChange={this.handleCredential} type="text" name={input} id={input} className="form-control"/>
+					<input value={this.state[input]} onChange={this.handleCredential} 
+					type={input =='password'? 'password': 'text'} name={input} id={input} className="form-control"/>
 				</fieldset>
 
 			);
@@ -38,12 +39,19 @@ class SignIn extends Component{
 		event.preventDefault();
 		this.props.signinUser(email, password);
 	}
+	handleFormError(error){
+		return(
+			<span className="error-message col-md-12">{error ? error : 'Please enter your login credentials'}</span>
+		)
+
+	}
 	render(){
 
 		return(
 
 			<form onSubmit={this.handleFormSubmit}>
 				{this.renderInputs(this.state.formLabels)}
+				{this.handleFormError(this.props.error)}
 				<button action="submit" className="btn btn-primary">Sign in</button>
 			</form>
 
@@ -52,4 +60,8 @@ class SignIn extends Component{
 	}
 }
 
-export default connect(null, actions)(SignIn);
+function mapStateToProps(state){
+	return {error: state.auth.error};
+}
+
+export default connect(mapStateToProps, actions)(SignIn);
