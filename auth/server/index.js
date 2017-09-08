@@ -9,12 +9,19 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
-//DB Setup
+/* =============================================================
+ DB Setup
+=================================================================*/
 
 // connects to our mongodb locally
 // creates a database within mongodb with the name `auth`
 mongoose.connect('mongodb://localhost:auth/auth');
+
+/* =============================================================
+ App setup - all about getting the express server working the way we want to
+=================================================================*/
 
 // creates our instance of express
 const app = express();
@@ -22,19 +29,24 @@ const app = express();
 // calls our server router 
 const router = require('./router');
 
-/* =============================================================
- App setup - all about getting the express server working the way we want to
-=================================================================*/
-
 // these are refered as middlewares in react / redux
 // essentially any incoming request needs to pass through these middlwares
 // these two functions do something to the requests between passing them on 
 
+// use is a method from express
 // morgan is a logging library framework that logs requests within the console
+
+// utilizes the CORS middleware to allow requests to the server from other domains
+// this allows the CORS principle to be bypassed - you can also set rules for each domain you want to allow bypassing for
+app.use(cors());
+
+
 app.use(morgan('combined'));
 
 // bodyParser passes any incoming requests into JSON, the '*/*' pseudo is accepting all requests no matter what the request is
 app.use(bodyParser.json({type: '*/*'}));	
+
+
 
 // passed our app through the server router
 router(app);

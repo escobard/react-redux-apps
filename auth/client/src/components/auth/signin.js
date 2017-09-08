@@ -35,8 +35,6 @@ class SignIn extends Component{
 	}
 	handleFormSubmit(event){
 		let {email, password} = this.state;
-		console.log('email:', email);
-		console.log('password:', password);
 		event.preventDefault();
 		this.props.signinUser(email, password);
 	}
