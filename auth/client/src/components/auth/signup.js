@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+
 import * as actions from '../../actions';
+import Form from '../form';
 
-class SignUp extends Components{
+
+class SignUp extends Component{
 	render(){
-		return(
-			<div>
 
-				<h2>Signup</h2>
+		return <Form formLabels={['email', 'password', 'confirmPass']} error={this.props.error} variant={'signUp'}/>;
 
-			</div>
-		)	
 	}
 }
 
-export default connect()(SignUp);
+function mapStateToProps({auth}){
+	return {error: auth.error};
+}
+
+export default connect(mapStateToProps, actions)(SignUp);

@@ -1,21 +1,9 @@
-// to refactor into a re-usable form component for signin, signup
-
-/* 
-
-Could write something like this:
-<Form formLabels={[array, of, inputs] formType={'string with signin or signup variants'} />
-
-*/
-
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../../actions';
 
-class SignIn extends Component{
+export default class Form extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			formLabels: ['email', 'password'],
 			email :'',
 			password :''
 		}
@@ -50,7 +38,7 @@ class SignIn extends Component{
 	handleFormSubmit(event){
 		let {email, password} = this.state;
 		event.preventDefault();
-		this.props.signinUser(email, password);
+		this.props.handler(email, password);
 	}
 	handleFormError(error){
 		return(
@@ -60,6 +48,7 @@ class SignIn extends Component{
 	}
 	render(){
 		let {error, formLabels} = this.props
+		console.log(this.props);
 		return(
 
 			<form onSubmit={this.handleFormSubmit}>
@@ -72,9 +61,3 @@ class SignIn extends Component{
 
 	}
 }
-
-function mapStateToProps({auth}){
-	return {error: auth.error};
-}
-
-export default connect(mapStateToProps, actions)(SignIn);
