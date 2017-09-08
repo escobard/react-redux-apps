@@ -12,6 +12,7 @@ class SignIn extends Component{
 		}
 
     	this.handleCredential= this.handleCredential.bind(this);
+    	this.handleFormSubmit= this.handleFormSubmit.bind(this);
     	this.renderInputs = this.renderInputs.bind(this);
 	}
 	renderInputs(inputs){
@@ -20,7 +21,7 @@ class SignIn extends Component{
 
 				<fieldset key={index} className="form-group">
 					<label htmlFor={input}>{input}</label>
-					<input value={this.state.value} onChange={this.handleCredential} type="text" name={input} id={input} className="form-control"/>
+					<input value={this.state[input]} onChange={this.handleCredential} type="text" name={input} id={input} className="form-control"/>
 				</fieldset>
 
 			);
@@ -32,15 +33,18 @@ class SignIn extends Component{
 		? this.setState({email:value}) 
 		: this.setState({password: value});
 	}
-	handleFormSubmit({email, password}){
-		console.log(this.state.email, this.state.password);
-		//this.props.signinUser({email, password});
+	handleFormSubmit(event){
+		let {email, password} = this.state;
+		console.log('email:', email);
+		console.log('password:', password);
+		event.preventDefault();
+		this.props.signinUser(email, password);
 	}
 	render(){
 
 		return(
 
-			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+			<form onSubmit={this.handleFormSubmit}>
 				{this.renderInputs(this.state.formLabels)}
 				<button action="submit" className="btn btn-primary">Sign in</button>
 			</form>
