@@ -11,4 +11,5 @@ export const PROD_URL = 'http://localhost:3090';
 // sign in URL
 export const SIGN_IN = 'signin';
 
-// 
+// sign up URL
+export const SIGN_UP = 'signup';

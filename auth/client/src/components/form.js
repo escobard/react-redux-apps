@@ -30,18 +30,18 @@ export default class Form extends Component{
 	handleFormSubmit(event){
 		event.preventDefault();
 		let {email, password, confirmpass} = this.state;
-		this.props.handler(email, password, confirmpass);
+		this.props.handler(email, password);
 	}
 
 	handleFormError(error){
 		const errors = [];
 		let {email, password, confirmpass} = this.state;
-
+		let {formLabels, variant} = this.props;
 		// error handlers
 		// this should be pretified later, but for now this works fine
 		error ? errors.push(error): null;
-		let passError = password !== confirmpass ? errors.push('Make sure your passwords match'): null;
-		let emptyFields = this.props.formLabels.map((label, index) =>{
+		let passError = variant ? password !== confirmpass ? errors.push('Make sure your passwords match'): null : null;
+		let emptyFields = formLabels.map((label, index) =>{
 			if (this.state[label] == '') {
 				errors.push(`${label} must be filled`);
 			}
