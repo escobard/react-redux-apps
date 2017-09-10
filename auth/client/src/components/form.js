@@ -45,9 +45,10 @@ export default class Form extends Component{
 			if (this.state[label] == '') {
 				errors.push(`${label} must be filled`);
 			}
-		})
+		});
+		
 		return(
-			<span className="error-message col-md-12">{ errors.join(', ') }</span>
+			<span className="error-message error col-md-12">{ errors.join(', ') }</span>
 		)
 
 	}
