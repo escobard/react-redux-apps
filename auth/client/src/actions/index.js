@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, AUTH_CONTENT } from './types';
 import { SIGN_IN, SIGN_UP, ROOT_URL } from './config'
 
 // signs the user in with a request to the server API
@@ -89,3 +89,24 @@ export function authError(error){
 	}
 }
 
+// this actually fetches the DATA from our server API - very useful for DB data
+export function fetchMessage(){
+
+	// using redux thunk
+	return function(dispatch){
+
+		// you can send header requests to each network request with axios like so
+		axios.get(ROOT_URL, {
+			headers: { authorization: localStorage.getItem('token') }
+		})
+		.then(response => {
+			dispatch({
+				type: AUTH_CONTENT,
+				payload: response.data.message
+			})
+		})
+		.catch(error =>{
+			console.log(error);
+		})
+	}
+}

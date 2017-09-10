@@ -5,10 +5,12 @@ import { combineReducers } from 'redux';
 //import {reducer as form} from 'redux-form';
 
 import authReducer from './authReducer'
+import authContent from './authContent'
 
 // we can reduce this down with es6 so that `form: form` can t be turned into `form`
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  data: authContent
 });
 
 export default rootReducer;
