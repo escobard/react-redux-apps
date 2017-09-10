@@ -5,7 +5,7 @@ export default class App extends Component {
   render() {
     return (
     	<div>
-    		<h2>Authentication App</h2>
+    		<h2>Redux Authentication</h2>
       		<Header/>
       		{this.props.children}
         </div>
