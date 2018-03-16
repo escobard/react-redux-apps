@@ -37,6 +37,7 @@ export default class Form extends Component{
 		const errors = [];
 		let {email, password, confirmpass} = this.state;
 		let {formLabels, variant} = this.props;
+		
 		// error handlers
 		// this should be pretified later, but for now this works fine
 		error ? errors.push(error): null;
