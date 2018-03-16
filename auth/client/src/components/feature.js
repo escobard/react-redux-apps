@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-// this is our protected route - this would be where we add data
 class Feature extends Component {
 	componentWillMount(){
 		this.props.fetchMessage();

@@ -20,8 +20,11 @@ import { AUTH_USER } from './actions/types';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
+//this grabs our token
 const token = localStorage.getItem('token');
 
+// if the user has a token, dispatch authentication action type
+// this section could be refactored into the ./utils.js file at a later date
 if (token) {
 	store.dispatch({type: AUTH_USER});
 }
