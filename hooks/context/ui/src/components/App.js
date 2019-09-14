@@ -1,6 +1,7 @@
 import React from "react";
 import UserCreate from "./UserCreate"
 import LanguageContext from "../contexts/LanguageContext";
+import LanguageSelector from "./LanguageSelector"
 
 class App extends React.Component {
   state = { language: 'english'}
@@ -13,11 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <div>
-          Select a language:
-          <i className="flag us" onClick={() => this.onLanguageChange('english')} />
-          <i className="flag nl" onClick={() => this.onLanguageChange('dutch')}/>
-        </div>
+        <LanguageSelector onLanguageChange={this.onLanguageChange}/>
         {/*
           using Context.Provider value="value" - updates the Context's value to whatever Value is provided
           BIG GOTCHA - using this approach, creates a new Provider INSTANCE, which is only available to the nested elements within the Provider
