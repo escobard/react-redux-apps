@@ -3,7 +3,9 @@ import React from "react";
 class App extends React.Component {
   state = { language: 'english'}
 
-  on
+  onLanguageChange = language =>{
+    this.setState({ language: language })
+  };
 
   render() {
     return (
@@ -13,6 +15,7 @@ class App extends React.Component {
           <i className="flag us" onClick={() => this.onLanguageChange('english')} />
           <i className="flag nl" onClick={() => this.onLanguageChange('dutch')}/>
         </div>
+        {this.state.language}
       </div>
   )
   }
