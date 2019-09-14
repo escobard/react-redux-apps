@@ -18,6 +18,10 @@ class App extends React.Component {
           <i className="flag us" onClick={() => this.onLanguageChange('english')} />
           <i className="flag nl" onClick={() => this.onLanguageChange('dutch')}/>
         </div>
+        {/*
+          using Context.Provider value="value" - updates the Context's value to whatever Value is provided
+          BIG GOTCHA - using this approach, creates a new Provider INSTANCE, which is only available to the nested elements within the Provider
+         */}
         <LanguageContext.Provider value={this.state.language}>
           <UserCreate/>
         </LanguageContext.Provider>
