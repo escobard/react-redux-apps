@@ -11,8 +11,10 @@ class Button extends React.Component{
   render(){
 
     // this.context now attached to the component due to syntax on line 9
-    console.log('this is the context', this.context)
-    return <button className="ui button primary">Submit</button>
+    // console.log('this is the context', this.context)
+
+    const text = this.context === 'english' ? 'Submit' : 'Voorleggen';
+    return <button className="ui button primary">{text}</button>
   }
 }
 
