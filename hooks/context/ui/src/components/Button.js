@@ -17,7 +17,7 @@ class Button extends React.Component{
         { /* the syntax below returns the Value of the context, rendering it */ }
       <LanguageContext.Consumer>
         {
-          (value) => value === 'english' ? 'Submit' : 'Voorleggen'
+          ({language}) => language === 'english' ? 'Submit' : 'Voorleggen'
         }
       </LanguageContext.Consumer>
     </button>
