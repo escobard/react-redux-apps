@@ -10,11 +10,28 @@ let defaultState = 'english'
 // enforce - contexts can only be used by Page Containers, to fuel Nested Containers / Components
 // idea - ideally we would call a module, that would return data. This data would have a loading = false property when no REQUEST has been sent, and loading = true property when RESPONSE has been received
 // we would use the module to handle refreshes + sharing of persisted data between pages.
-const context = React.createContext(
+const Context = React.createContext(
   // this is the default value of the context
   defaultState
 );
 
+export class LanguageStore extends React.Component{
+  state = { language: 'english' }
+
+  onLanguageChange = (language) =>{
+    this.setState({language})
+  }
+
+  render(){
+    return(
+      <Context.Provider value={{...this.state, onLanguageChange }}>
+        {this.props.children}
+      </Context.Provider>
+    )
+  }
+
+}
+
 console.log('CONTEXT', context)
 
-export default context;
+export default Context;
