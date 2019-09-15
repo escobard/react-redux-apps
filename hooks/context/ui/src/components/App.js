@@ -1,27 +1,20 @@
 import React from "react";
 import UserCreate from "./UserCreate"
-import LanguageContext from "../contexts/LanguageContext";
+import { LanguageStore } from "../contexts/LanguageContext";
 import LanguageSelector from "./LanguageSelector"
 
 class App extends React.Component {
-  state = { language: 'english'}
-
-  // this updates LanguageContext.value, due to the syntax on line 21
-  onLanguageChange = language =>{
-    this.setState({ language: language })
-  };
-
   render() {
     return (
       <div className="ui container">
-        <LanguageSelector onLanguageChange={this.onLanguageChange}/>
+        <LanguageStore>
+          <LanguageSelector />
         {/*
           using Context.Provider value="value" - updates the Context's value to whatever Value is provided
           BIG GOTCHA - using this approach, creates a new Provider INSTANCE, which is only available to the nested elements within the Provider
          */}
-        <LanguageContext.Provider value={this.state.language}>
           <UserCreate/>
-        </LanguageContext.Provider>
+        </LanguageStore>
       </div>
   )
   }
