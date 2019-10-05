@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-class App extends React.Component {
-  state = { resource: "posts" };
-  render() {
+const App = () => {
     return (
       <div>
         <div>
@@ -16,7 +14,6 @@ class App extends React.Component {
         {this.state.resource}
       </div>
     );
-  }
 }
 
 export default App;
