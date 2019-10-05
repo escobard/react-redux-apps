@@ -17,6 +17,9 @@ const ResourceList = ({ resource }) => {
     // calls functions within the scope if props.resource's value changes
     fetchResource(resource);
   },
+    // removing the second argument of useEffect, calls the scoped function endlessly
+    // adding an empty array as the second argument, calls the scoped function once on mount
+    // can add multiple arguments, useEffect checks for changes on all arguments
     // on render if the props.resource value changes (from previous render), fetchResource is called
     [resource]);
 
