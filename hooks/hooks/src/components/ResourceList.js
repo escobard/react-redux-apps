@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ResourceList = () => {
+const ResourceList = ({ resource }) => {
   const [resources, setResources] = useState([]);
 
-  const fetchResource = async () => {
+  const fetchResource = async (resource) => {
     const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/${this.props.resource}`
+      `https://jsonplaceholder.typicode.com/${resource}`
     );
 
-    setResources({ resource: response.data });
+    setResources(response.data);
   };
+
+  // useEffect replaces lifecycle methods
+  useEffect(() =>{
+    // calls functions within the scope on component mount
+    fetchResource(resource)
+  }, [])
 
   return <div>{resources.length}</div>;
 };
