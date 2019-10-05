@@ -4,7 +4,7 @@ import axios from "axios";
 const ResourceList = ({ resource }) => {
   const [resources, setResources] = useState([]);
 
-  const fetchResource = async (resource) => {
+  const fetchResource = async resource => {
     const response = await axios.get(
       `https://jsonplaceholder.typicode.com/${resource}`
     );
@@ -12,11 +12,13 @@ const ResourceList = ({ resource }) => {
     setResources(response.data);
   };
 
-  // useEffect replaces lifecycle methods
-  useEffect(() =>{
-    // calls functions within the scope on component mount
-    fetchResource(resource)
-  }, [])
+  // useEffect replaces lifecycle methods, called every time the component is rendered
+  useEffect(() => {
+    // calls functions within the scope if props.resource's value changes
+    fetchResource(resource);
+  },
+    // on render if the props.resource value changes (from previous render), fetchResource is called
+    [resource]);
 
   return <div>{resources.length}</div>;
 };
